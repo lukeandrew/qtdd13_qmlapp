@@ -11,8 +11,8 @@ Window {
         id: camera
         onImagePathChanged: {
             img.source = imagePath
-            img.width = img.sourceSize.width / 4
-            img.height = img.sourceSize.height / 4
+            img.width = mainWindow.height / 2
+            img.height = mainWindow.width / 2
         }
     }
 
