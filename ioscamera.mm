@@ -1,5 +1,5 @@
 #include <UIKit/UIKit.h>
-#include <QtGui/5.2.0/QtGui/qpa/qplatformnativeinterface.h>
+#include <QtGui/5.2.1/QtGui/qpa/qplatformnativeinterface.h>
 #include <QtGui>
 #include <QtQuick>
 #include "IOSCamera.h"
@@ -22,8 +22,6 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    Q_UNUSED(picker);
-
     // Create the path where we want to save the image:
     NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     path = [path stringByAppendingString:@"/capture.png"];
@@ -37,8 +35,7 @@
     emit m_iosCamera->imagePathChanged();
 
     // Bring back Qt's view controller:
-    UIViewController *rvc = [[[UIApplication sharedApplication] keyWindow] rootViewController];
-    [rvc dismissViewControllerAnimated:YES completion:nil];
+    [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
